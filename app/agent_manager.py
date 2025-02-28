@@ -1,26 +1,33 @@
-# app/agent_manager.py
-class AgentManager:
-    def __init__(self, agents: dict):
-        self.agents = agents
+# app/agents.py
 
-    def route_command(self, interpretation: str) -> str:
-        """
-        Delegate the interpreted command to the appropriate agent using keyword-based routing.
-        """
-        interpretation_lower = interpretation.lower()
-        if "code" in interpretation_lower:
-            return self.agents["developer"].process(interpretation)
-        elif "test" in interpretation_lower:
-            return self.agents["tester"].process(interpretation)
-        elif "research" in interpretation_lower:
-            return self.agents["researcher"].process(interpretation)
-        elif "data" in interpretation_lower:
-            return self.agents["data_manager"].process(interpretation)
-        elif "e-commerce" in interpretation_lower:
-            return self.agents["ecommerce"].process(interpretation)
-        elif "marketing" in interpretation_lower:
-            return self.agents["marketing"].process(interpretation)
-        elif "business" in interpretation_lower:
-            return self.agents["biz_dev"].process(interpretation)
-        else:
-            return "AdminAI: Command not recognized. Please clarify."
+class BaseAgent:
+    def process(self, task: str) -> str:
+        raise NotImplementedError("Each agent must implement its own process method.")
+
+class DeveloperAgent(BaseAgent):
+    def process(self, task: str) -> str:
+        return f"DeveloperAgent: Code generated for task '{task}'."
+
+class TesterAgent(BaseAgent):
+    def process(self, task: str) -> str:
+        return f"TesterAgent: Testing completed for '{task}'."
+
+class ResearcherAgent(BaseAgent):
+    def process(self, task: str) -> str:
+        return f"ResearcherAgent: Research data collected for '{task}'."
+
+class DataManagerAgent(BaseAgent):
+    def process(self, task: str) -> str:
+        return f"DataManagerAgent: Data processed for '{task}'."
+
+class ECommerceAgent(BaseAgent):
+    def process(self, task: str) -> str:
+        return f"ECommerceAgent: E-commerce strategies updated for '{task}'."
+
+class MarketingAgent(BaseAgent):
+    def process(self, task: str) -> str:
+        return f"MarketingAgent: Marketing analysis done for '{task}'."
+
+class BizDevAgent(BaseAgent):
+    def process(self, task: str) -> str:
+        return f"BizDevAgent: Business opportunities evaluated for '{task}'."

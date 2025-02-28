@@ -14,7 +14,7 @@ app.include_router(admin_router)
 
 admin_ai = AdminAI()
 
-# REST endpoint for processing AI commands
+# Endpoint for processing AI commands
 class CommandRequest(BaseModel):
     command: str
 
@@ -23,7 +23,7 @@ async def process_command(request: CommandRequest):
     response = admin_ai.interpret_command(request.command)
     return {"response": response}
 
-# WebSocket endpoint for real-time interaction
+# WebSocket endpoint for real-time communication
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
@@ -33,4 +33,4 @@ async def websocket_endpoint(websocket: WebSocket):
         await websocket.send_text(response)
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=5000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
