@@ -1,0 +1,8 @@
+fastapi==0.95.2
+uvicorn==0.22.0
+python-dotenv==1.0.0
+celery==5.3.0
+redis==4.5.4
+PyJWT
+pydantic
+# Additional libraries (if needed): requests, beautifulsoup4, transformers, torch, etc.
